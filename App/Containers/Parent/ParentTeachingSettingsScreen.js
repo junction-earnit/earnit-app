@@ -3,6 +3,7 @@ import { FlatList, Platform, Text, View, Button, ActivityIndicator, Image } from
 import { connect } from 'react-redux'
 import NavigationService from 'App/Services/NavigationService'
 import ToggleSwitch from 'toggle-switch-react-native'
+import ExampleActions from 'App/Stores/Example/Actions'
 
 /**
  * This is an example of a container component.
@@ -79,7 +80,16 @@ class ParentTeachingSettingsScreen extends React.Component {
         label="Phishing"
         labelStyle={{ color: "black", fontSize: 24, alignSelf:'flex-start', width: '75%' }}
         size="large"
-        onToggle={isOn => this.setState(s => ({...this.state, three:isOn}))}
+        onToggle={isOn => {
+          this.setState(s => ({...this.state, three:isOn}))
+          if (isOn) {
+            const now = new Date()
+            const secondsSinceEpoch = Math.round(now.getTime() / 1000)
+            this.props.setRemote({options: {phishing: true, lastPhishing: secondsSinceEpoch}})
+          } else {
+            this.props.setRemote({options: {phishing: false}})
+          }
+        }}
 />
 
 </View>
@@ -140,6 +150,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  setRemote: data => dispatch(ExampleActions.setRemote(data))
 })
 
 export default connect(
