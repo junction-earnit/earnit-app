@@ -1,5 +1,5 @@
 import React from 'react'
-import { Platform, Text, View, Button, ActivityIndicator, Image } from 'react-native'
+import { TextInput, Platform, Text, View, Button, ActivityIndicator, Image } from 'react-native'
 import { connect } from 'react-redux'
 import NavigationService from 'App/Services/NavigationService'
 
@@ -16,6 +16,15 @@ const instructions = Platform.select({
 })
 
 class ChildAskScreen extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      productName: '',
+      productPrice: 0,
+      timePeriod: 1
+    }
+  }
+
   componentDidMount() {
     // this._fetchUser()
   }
@@ -24,11 +33,20 @@ class ChildAskScreen extends React.Component {
     return (
       <View>
 
-        <Text> EARN IT! </Text>
-        
-            <Button onPress={() => NavigationService.navigateAndReset('ChildMainScreen')} title="Child" />
-            <Button onPress={() => NavigationService.navigateAndReset('ParentMainScreen')} title="Parent" />
-        
+        <Text> Ask for money! </Text>
+
+        <TextInput
+          style={{ height: 40, borderColor: 'gray', color: 'black', borderWidth: 1 }}
+          onChangeText={text => this.setState(s => ({...s, productName: text}))}
+          value={this.state.productName}
+        />
+        <TextInput
+          style={{ height: 40, borderColor: 'gray', color: 'black', borderWidth: 1 }}
+          onChangeText={text => this.setState(s => ({...s, productName: text}))}
+          value={this.state.productPrice}
+          keyboardType={numeric}
+        />
+
       </View>
     )
   }
@@ -36,7 +54,7 @@ class ChildAskScreen extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-  
+
 })
 
 const mapDispatchToProps = (dispatch) => ({

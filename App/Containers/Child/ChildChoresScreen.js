@@ -24,11 +24,8 @@ class ChildChoresScreen extends React.Component {
     return (
       <View>
 
-        <Text> EARN IT! </Text>
-        
-            <Button onPress={() => NavigationService.navigateAndReset('ChildMainScreen')} title="Child" />
-            <Button onPress={() => NavigationService.navigateAndReset('ParentMainScreen')} title="Parent" />
-        
+        <Text> These are your chores: </Text>
+
       </View>
     )
   }
@@ -36,7 +33,7 @@ class ChildChoresScreen extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-  
+
 })
 
 const mapDispatchToProps = (dispatch) => ({

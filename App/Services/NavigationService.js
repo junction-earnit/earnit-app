@@ -30,6 +30,11 @@ function navigate(routeName, params) {
   )
 }
 
+
+function goBack(routeName, params) {
+  navigator.dispatch(NavigationActions.back());
+}
+
 /**
  * Call this function when you want to navigate to a specific route AND reset the navigation history.
  *
@@ -58,4 +63,5 @@ export default {
   navigate,
   navigateAndReset,
   setTopLevelNavigator,
+  goBack
 }

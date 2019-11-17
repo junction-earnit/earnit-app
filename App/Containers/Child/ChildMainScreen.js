@@ -1,15 +1,15 @@
 import React from 'react'
-import { Platform, Text, View, Button, ActivityIndicator, Image, StyleSheet  } from 'react-native'
+import { TouchableWithoutFeedback, Platform, Text, View, Button, ActivityIndicator, Image, StyleSheet, Modal, TouchableHighlight, Alert} from 'react-native';
 import { connect } from 'react-redux'
 import NavigationService from 'App/Services/NavigationService'
-import {
+/*import {
   LineChart,
   BarChart,
   PieChart,
   ProgressChart,
   ContributionGraph,
   StackedBarChart
-} from "react-native-chart-kit";
+} from "react-native-chart-kit";*/
 
 /**
  * This is an example of a container component.
@@ -24,6 +24,34 @@ const instructions = Platform.select({
 })
 
 class ChildMainScreen extends React.Component {
+  constructor(props) {
+    super(props)
+    let initial_child = {
+      balance: 0,
+      savings: 0
+    }
+    if (props.remote && props.remote.child) {
+      initial_child = props.remote.child
+    }
+
+    this.state = {
+      modalVisible: false,
+      child: initial_child
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.remote) {
+      if (JSON.stringify(this.props.remote.child) !== JSON.stringify(prevProps.remote.child)) {
+        this.setState(state => ({ ...state, child: this.props.remote.child }))
+      }
+    }
+  }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+
   componentDidMount() {
     // this._fetchUser()
   }
@@ -32,20 +60,20 @@ class ChildMainScreen extends React.Component {
     return (
       <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'stretch'}}>
 
-      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}> 
-        <Text style={styles.titleText} > Hi Aref! </Text> 
+      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+        <Text style={styles.titleText} > Hi Aref! </Text>
       </View>
 
       <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
 
         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={styles.titleText} >Pocket</Text> 
-          <Text style={styles.titleText} >13$</Text> 
+          <Text style={styles.titleText} >Pocket</Text>
+          <Text style={styles.titleText} >{this.state.child.balance}$</Text>
         </View>
 
         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={styles.titleText} > Savings </Text> 
-          <Text style={styles.titleText} > 104$ </Text> 
+          <Text style={styles.titleText} > Savings </Text>
+          <Text style={styles.titleText} > {this.state.child.savings}$ </Text>
         </View>
 
       </View>
@@ -54,61 +82,43 @@ class ChildMainScreen extends React.Component {
       <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
 
         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-          <Button onPress={() => NavigationService.navigate('ChildGetScreen')} title="Get" />
+          <Button onPress={() => {
+            this.setModalVisible(true);
+          }} title="Get" />
         </View>
 
         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-          <Button onPress={() => NavigationService.navigate('ChildGetScreen')} title="Manage" />
+          <Button  title="Manage" />
         </View>
 
       </View>
 
-      <View>
-  <Text>Bezier Line Chart</Text>
-  <LineChart
-    data={{
-      labels: ["January", "February", "March", "April", "May", "June"],
-      datasets: [
-        {
-          data: [
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100,
-            Math.random() * 100
-          ]
-        }
-      ]
-    }}
-    
-    width={Dimensions.get("window").width} // from react-native
-    height={220}
-    yAxisLabel={"$"}
-    yAxisSuffix={"k"}
-    chartConfig={{
-      backgroundColor: "#e26a00",
-      backgroundGradientFrom: "#fb8c00",
-      backgroundGradientTo: "#ffa726",
-      decimalPlaces: 2, // optional, defaults to 2dp
-      color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-      labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-      style: {
-        borderRadius: 16
-      },
-      propsForDots: {
-        r: "6",
-        strokeWidth: "2",
-        stroke: "#ffa726"
-      }
-    }}
-    bezier
-    style={{
-      marginVertical: 8,
-      borderRadius: 16
-    }}
-  />
-</View>
+      <Modal
+          animationType="slide"
+          transparent={true}
+          visible={this.state.modalVisible}
+        >
+          <TouchableWithoutFeedback onPress={() => {this.setModalVisible(false)}}>
+            <View style={{backgroundColor: 'rgba(0,0,0,0.1)', flex: 1}}>
+              <TouchableWithoutFeedback>
+                <View style={{backgroundColor: '#FFF', width: '80%', marginLeft: '10%', marginTop: 200, padding: 50}}>
+                  <Button onPress={() => {
+                    this.setModalVisible(false);
+                    NavigationService.navigate('ChildChoresScreen');
+                  }} title="Do a chore" />
+                  <Button onPress={() => {
+                    this.setModalVisible(false);
+                    NavigationService.navigate('ChildAskScreen');
+                  }} title="Ask for extra money" />
+                  <Button onPress={() => {
+                    this.setModalVisible(false);
+                    NavigationService.navigate('ChildPurchaseScreen');
+                  }} title="Big purchase" />
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
+          </TouchableWithoutFeedback>
+        </Modal>
 
       </View>
     )
@@ -117,10 +127,11 @@ class ChildMainScreen extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-  
+  remote: state.example.remote
 })
 
 const mapDispatchToProps = (dispatch) => ({
+    setRemote: data => dispatch(ExampleActions.setRemote(data))
 })
 
 const styles = StyleSheet.create({
@@ -130,7 +141,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 36,
     fontWeight: 'bold',
-    margin: 16, 
+    margin: 16,
   },
 });
 
