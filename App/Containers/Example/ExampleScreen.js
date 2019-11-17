@@ -74,6 +74,7 @@ class ExampleScreen extends React.Component {
               onChangeText={(text) => this.setState({text})}
               onSubmitEditing={() => this.props.setRemote({text: this.state.text})}
               value={this.state.text}
+              style={{color: '#000000'}}
             />
           </View>
         )}
