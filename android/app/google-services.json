@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "87598396116",
+    "firebase_url": "https://earnit-63f7c.firebaseio.com",
+    "project_id": "earnit-63f7c",
+    "storage_bucket": "earnit-63f7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87598396116:android:bb36e13fd563bfdf0ec141",
+        "android_client_info": {
+          "package_name": "com.boilerplate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "87598396116-n0rbk1f36pe8gp2ct6kgkegsojjt2kv5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo7u5S_ypDOm7H5ypd6dUwG6TkS2lE7Vg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "87598396116-n0rbk1f36pe8gp2ct6kgkegsojjt2kv5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "87598396116-6vcfq6tju2u2vuu6583q8h9d208j6f2f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "earnit.erphe.us"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
