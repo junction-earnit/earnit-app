@@ -2,14 +2,6 @@ import React from 'react'
 import { TouchableWithoutFeedback, Platform, Text, View, Button, ActivityIndicator, Image, StyleSheet, Modal, TouchableHighlight, Alert} from 'react-native';
 import { connect } from 'react-redux'
 import NavigationService from 'App/Services/NavigationService'
-/*import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart
-} from "react-native-chart-kit";*/
 
 /**
  * This is an example of a container component.
@@ -51,6 +43,7 @@ class ChildMainScreen extends React.Component {
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
+
 
   componentDidMount() {
     // this._fetchUser()

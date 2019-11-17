@@ -1,8 +1,21 @@
 import React from 'react'
-import { Platform, Text, View, Button, ActivityIndicator, Image } from 'react-native'
+import { FlatList, Platform, Text, View, Button, ActivityIndicator, Image, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import NavigationService from 'App/Services/NavigationService'
+import { List, ListItem } from 'react-native-elements'
 
+const list = [
+  {
+    name: 'Aref Moradi',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    subtitle: 'Current balance: 20$'
+  },
+  {
+    name: 'Sergiu Lazar',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: '-10$'
+  },
+]
 /**
  * This is an example of a container component.
  *
@@ -22,13 +35,14 @@ class ParentMainScreen extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start'}}>
 
-        <Text> EARN IT! </Text>
-        
-            <Button onPress={() => NavigationService.navigateAndReset('ChildMainScreen')} title="Child" />
-            <Button onPress={() => NavigationService.navigateAndReset('ParentMainScreen')} title="Parent" />
-        
+      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-start'}}> 
+        <Text style={styles.titleText}>Hi Dad!</Text> 
+      </View>
+
+      
+
       </View>
     )
   }
@@ -41,6 +55,16 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 })
+
+const styles = StyleSheet.create({
+  baseText: {
+    fontFamily: 'Cochin',
+  },
+  titleText: {
+    fontSize: 36,
+    fontWeight: 'bold',
+  },
+});
 
 export default connect(
   mapStateToProps,

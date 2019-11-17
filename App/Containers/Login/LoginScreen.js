@@ -29,7 +29,7 @@ class LoginScreen extends React.Component {
         <View style={{margin: 16, width: '100%', flexDirection: 'row', justifyContent: 'space-around'}}>
 
             <Button style={{margin:16,  width: '50%'}} onPress={() => NavigationService.navigateAndReset('ChildMainScreen')} title="Child" />  
-            <Button style={{margin:16,  width: '50%'}} onPress={() => NavigationService.navigateAndReset('ParentMainScreen')} title="Parent" />
+            <Button style={{margin:16,  width: '50%'}} onPress={() => NavigationService.navigateAndReset('ChildScammedScreen')} title="Parent" />
 
             </View>
         
