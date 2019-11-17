@@ -136,9 +136,14 @@ class ParentTeachingSettingsScreen extends React.Component {
         }
         />
 
+        { this.props.remote.approvals ? (<Button
+        title="Approvals"
+        onPress={() => NavigationService.navigate('ParentApprovalsScreen')}
+      />) : null
+      }
+
 
       </View>
-
 
     )
   }

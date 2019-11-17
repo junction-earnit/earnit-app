@@ -35,4 +35,3 @@ while(True):
     if (shouldSendMessage(current_data)):
         sendPhishingMessage()
     time.sleep(3)
-

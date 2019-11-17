@@ -2,6 +2,7 @@ import React from 'react'
 import { Platform, Text, View, Button, ActivityIndicator, Image } from 'react-native'
 import { connect } from 'react-redux'
 import NavigationService from 'App/Services/NavigationService'
+import ExampleActions from 'App/Stores/Example/Actions'
 
 /**
  * This is an example of a container component.
@@ -21,13 +22,38 @@ class ParentApprovalsScreen extends React.Component {
   }
 
   render() {
+    if (!this.props.remote.approvals) {
+      return (<View />)
+    }
     return (
-      <View>
+      <View style={{padding: 50}}>
 
-        <Text> EARN IT! </Text>
+        <Text> Approve? </Text>
 
-            <Button onPress={() => NavigationService.navigateAndReset('ChildMainScreen')} title="Child" />
-            <Button onPress={() => NavigationService.navigateAndReset('ParentMainScreen')} title="Parent" />
+        <Text>Aref wants to spend {this.props.remote.approvals.productPrice}$ in {this.props.remote.approvals.productName}</Text>
+
+        <Button
+          onPress={() => {
+            this.props.setRemote({
+              child: {
+                ...this.props.remote.child,
+                balance: this.props.remote.child.balance + this.props.remote.approvals.productPrice
+              },
+              approvals: 0
+            })
+            NavigationService.goBack()
+          }}
+          title="Approve"
+        />
+        <Button
+          onPress={() => {
+            this.props.setRemote({
+              approvals: 0
+            })
+            NavigationService.goBack()
+          }}
+          title="Reject"
+        />
 
       </View>
     )
@@ -36,12 +62,12 @@ class ParentApprovalsScreen extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-
+  remote: state.example.remote
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  setRemote: data => dispatch(ExampleActions.setRemote(data))
 })
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps

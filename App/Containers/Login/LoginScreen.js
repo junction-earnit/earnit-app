@@ -2,6 +2,8 @@ import React from 'react'
 import { Platform, Text, View, Button, ActivityIndicator, Image, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import NavigationService from 'App/Services/NavigationService'
+import Style from './ExampleScreenStyle'
+import { Images } from 'App/Theme'
 
 /**
  * This is an example of a container component.
@@ -22,9 +24,9 @@ class LoginScreen extends React.Component {
 
   render() {
     return (
-      <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center'}}>
+      <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', padding: 50}}>
 
-        <Text style={styles.titleText} > EARN IT </Text>
+        <Image style={Style.logo} source={Images.logo} resizeMode={'contain'} />
 
         <View style={{margin: 16, width: '100%', flexDirection: 'row', justifyContent: 'space-around'}}>
 

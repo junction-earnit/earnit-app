@@ -107,12 +107,12 @@ class ChildPurchaseScreen extends React.Component {
 
         <Button
           style={{marginTop: 60}}
-          title="Buy"
+          title="Request to buy"
           onPress={() => {
             this.props.setRemote({
-              child: {
-                ...this.props.remote.child,
-                balance: this.props.remote.child.balance + this.state.productPrice
+              approvals: {
+                productPrice: this.state.productPrice,
+                productName: this.state.productName
               }
             })
             NavigationService.goBack()
