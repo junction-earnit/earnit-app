@@ -1,5 +1,5 @@
 import React from 'react'
-import { Platform, Text, View, Button, ActivityIndicator, Image } from 'react-native'
+import { Platform, Text, View, Button, ActivityIndicator, Image, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import ExampleActions from 'App/Stores/Example/Actions'
@@ -20,8 +20,26 @@ const instructions = Platform.select({
 })
 
 class ExampleScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    let initialText = '';
+    if (props.remote) {
+      console.log('remote', props.remote)
+      initialText = props.remote.text;
+    }
+    this.state = {text: initialText};
+  }
+
   componentDidMount() {
     this._fetchUser()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.remote) {
+      if (this.props.remote.text !== prevProps.remote.text) {
+        this.setState(state => ({ ...state, text: this.props.remote.text }))
+      }
+    }
   }
 
   render() {
@@ -50,6 +68,13 @@ class ExampleScreen extends React.Component {
               </View>
             )}
             <Button onPress={() => this._fetchUser()} title="Refresh" />
+            <TextInput
+              style={{height: 40}}
+              placeholder="Type here to translate!"
+              onChangeText={(text) => this.setState({text})}
+              onSubmitEditing={() => this.props.setRemote({text: this.state.text})}
+              value={this.state.text}
+            />
           </View>
         )}
       </View>
@@ -67,6 +92,8 @@ ExampleScreen.propTypes = {
   userErrorMessage: PropTypes.string,
   fetchUser: PropTypes.func,
   liveInEurope: PropTypes.bool,
+  remote: PropTypes.object,
+  setRemote: PropTypes.func
 }
 
 const mapStateToProps = (state) => ({
@@ -74,10 +101,12 @@ const mapStateToProps = (state) => ({
   userIsLoading: state.example.userIsLoading,
   userErrorMessage: state.example.userErrorMessage,
   liveInEurope: liveInEurope(state),
+  remote: state.example.remote
 })
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUser: () => dispatch(ExampleActions.fetchUser()),
+  setRemote: data => dispatch(ExampleActions.setRemote(data))
 })
 
 export default connect(

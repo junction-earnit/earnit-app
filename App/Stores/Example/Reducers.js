@@ -28,6 +28,15 @@ export const fetchUserFailure = (state, { errorMessage }) => ({
   userErrorMessage: errorMessage,
 })
 
+export const setRemote = (state, data) => {
+  const { payload } = data;
+  console.log("setRemote", state, data)
+  return ({
+  ...state,
+  remote: {...state.remote, ...payload}
+  })
+}
+
 /**
  * @see https://github.com/infinitered/reduxsauce#createreducer
  */
@@ -35,4 +44,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [ExampleTypes.FETCH_USER_LOADING]: fetchUserLoading,
   [ExampleTypes.FETCH_USER_SUCCESS]: fetchUserSuccess,
   [ExampleTypes.FETCH_USER_FAILURE]: fetchUserFailure,
+  [ExampleTypes.SET_REMOTE]: setRemote
 })

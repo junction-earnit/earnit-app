@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>87598396116-6vcfq6tju2u2vuu6583q8h9d208j6f2f.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.87598396116-6vcfq6tju2u2vuu6583q8h9d208j6f2f</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAZVcYvco4htu7V_wNoDL1Z1TBKs7CdNbg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>87598396116</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>earnit.erphe.us</string>
+	<key>PROJECT_ID</key>
+	<string>earnit-63f7c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>earnit-63f7c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:87598396116:ios:101d19f1403b2c520ec141</string>
+	<key>DATABASE_URL</key>
+	<string>https://earnit-63f7c.firebaseio.com</string>
+</dict>
+</plist>

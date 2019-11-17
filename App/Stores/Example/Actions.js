@@ -27,6 +27,8 @@ const { Types, Creators } = createActions({
   fetchUserSuccess: ['user'],
   // An error occurred
   fetchUserFailure: ['errorMessage'],
+
+  setRemote: ['payload']
 })
 
 export const ExampleTypes = Types
