@@ -1,7 +1,8 @@
 import React from 'react'
-import { Platform, Text, View, Button, ActivityIndicator, Image } from 'react-native'
+import { FlatList, Platform, Text, View, Button, ActivityIndicator, Image } from 'react-native'
 import { connect } from 'react-redux'
 import NavigationService from 'App/Services/NavigationService'
+import ToggleSwitch from 'toggle-switch-react-native'
 
 /**
  * This is an example of a container component.
@@ -15,21 +16,120 @@ const instructions = Platform.select({
   android: 'Double tap R on your keyboard to reload,\nShake or press menu button for dev menu.',
 })
 
+
+
 class ChildScammedScreen extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      one: false,
+      two: false,
+      three: false,
+      four: true, 
+      five: false,
+    }
+  }
+
   componentDidMount() {
     // this._fetchUser()
   }
 
   render() {
     return (
-      <View>
 
-        <Text> EARN IT! </Text>
-        
-            <Button onPress={() => NavigationService.navigateAndReset('ChildMainScreen')} title="Child" />
-            <Button onPress={() => NavigationService.navigateAndReset('ParentMainScreen')} title="Parent" />
-        
+
+      
+      <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-end'}}>
+
+      <View style={{margin: 8}}>
+
+        <ToggleSwitch
+        isOn={this.state.one}
+        onColor="green"
+        offColor="red"
+        label="Insurance"
+        labelStyle={{ color: "black", fontSize: 24, alignSelf:'flex-start', width: '75%' }}
+        size="large"
+        onToggle={isOn => this.setState(s => ({...this.state, one:isOn}))}
+/>
+
+</View>
+
+<View style={{margin: 8}}>
+
+        <ToggleSwitch
+        isOn={this.state.two}
+        onColor="green"
+        offColor="red"
+        label="Investing"
+        labelStyle={{ color: "black", fontSize: 24, alignSelf:'flex-start', width: '75%' }}
+        size="large"
+        onToggle={isOn => this.setState(s => ({...this.state, two:isOn}))}
+/>
+
+</View>
+
+<View style={{margin: 8}}>
+
+        <ToggleSwitch
+        isOn={this.state.three}
+        onColor="green"
+        offColor="red"
+        label="Phishing"
+        labelStyle={{ color: "black", fontSize: 24, alignSelf:'flex-start', width: '75%' }}
+        size="large"
+        onToggle={isOn => this.setState(s => ({...this.state, three:isOn}))}
+/>
+
+</View>
+
+<View style={{margin: 8}}>
+
+        <ToggleSwitch
+        isOn={this.state.four}
+        onColor="green"
+        offColor="red"
+        label="Installments"
+        labelStyle={{ color: "black", fontSize: 24, alignSelf:'flex-start', width: '75%' }}
+        size="large"
+        onToggle={isOn => this.setState(s => ({...this.state, four:isOn}))}
+/>
+
+</View>
+
+<View style={{margin: 8}}>
+
+        <ToggleSwitch
+        isOn={this.state.five}
+        onColor="green"
+        offColor="red"
+        label="Interests"
+        labelStyle={{ color: "black", fontSize: 24, alignSelf:'flex-start', width: '75%' }}
+        size="large"
+        onToggle={isOn => this.setState(s => ({...this.state, five:isOn}))}
+/>
+
+</View>
+
+<FlatList style={{margin:16, alignSelf: 'flex-start'}}
+          data={[
+            {key: 'Aref', debt: 20},
+            {key: 'Sergiu', debt: -10},
+          ]}
+          renderItem={
+            ({item}) => 
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <Text style={{fontSize:24}}>{item.key}</Text> 
+          <Text style={{fontSize:20}}>{item.debt}</Text> 
+        </View>
+        }
+        />
+
+
       </View>
+
+      
     )
   }
 }

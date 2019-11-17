@@ -16,6 +16,10 @@ const instructions = Platform.select({
 })
 
 class ChildMainScreen extends React.Component {
+
+  
+
+
   componentDidMount() {
     // this._fetchUser()
   }
