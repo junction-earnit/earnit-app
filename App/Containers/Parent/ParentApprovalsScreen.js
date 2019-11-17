@@ -25,10 +25,10 @@ class ParentApprovalsScreen extends React.Component {
       <View>
 
         <Text> EARN IT! </Text>
-        
+
             <Button onPress={() => NavigationService.navigateAndReset('ChildMainScreen')} title="Child" />
             <Button onPress={() => NavigationService.navigateAndReset('ParentMainScreen')} title="Parent" />
-        
+
       </View>
     )
   }
@@ -36,7 +36,7 @@ class ParentApprovalsScreen extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-  
+
 })
 
 const mapDispatchToProps = (dispatch) => ({

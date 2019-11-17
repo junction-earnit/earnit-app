@@ -23,11 +23,7 @@ class ChildScammedScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      one: false,
-      two: false,
-      three: false,
-      four: true, 
-      five: false,
+
     }
   }
 
@@ -39,104 +35,27 @@ class ChildScammedScreen extends React.Component {
     return (
 
 
-      
-      <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-end'}}>
 
-      <View style={{margin: 8}}>
+      <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start'}}>
 
-        <ToggleSwitch
-        isOn={this.state.one}
-        onColor="green"
-        offColor="red"
-        label="Insurance"
-        labelStyle={{ color: "black", fontSize: 24, alignSelf:'flex-start', width: '75%' }}
-        size="large"
-        onToggle={isOn => this.setState(s => ({...this.state, one:isOn}))}
-/>
-
-</View>
-
-<View style={{margin: 8}}>
-
-        <ToggleSwitch
-        isOn={this.state.two}
-        onColor="green"
-        offColor="red"
-        label="Investing"
-        labelStyle={{ color: "black", fontSize: 24, alignSelf:'flex-start', width: '75%' }}
-        size="large"
-        onToggle={isOn => this.setState(s => ({...this.state, two:isOn}))}
-/>
-
-</View>
-
-<View style={{margin: 8}}>
-
-        <ToggleSwitch
-        isOn={this.state.three}
-        onColor="green"
-        offColor="red"
-        label="Phishing"
-        labelStyle={{ color: "black", fontSize: 24, alignSelf:'flex-start', width: '75%' }}
-        size="large"
-        onToggle={isOn => this.setState(s => ({...this.state, three:isOn}))}
-/>
-
-</View>
-
-<View style={{margin: 8}}>
-
-        <ToggleSwitch
-        isOn={this.state.four}
-        onColor="green"
-        offColor="red"
-        label="Installments"
-        labelStyle={{ color: "black", fontSize: 24, alignSelf:'flex-start', width: '75%' }}
-        size="large"
-        onToggle={isOn => this.setState(s => ({...this.state, four:isOn}))}
-/>
-
-</View>
-
-<View style={{margin: 8}}>
-
-        <ToggleSwitch
-        isOn={this.state.five}
-        onColor="green"
-        offColor="red"
-        label="Interests"
-        labelStyle={{ color: "black", fontSize: 24, alignSelf:'flex-start', width: '75%' }}
-        size="large"
-        onToggle={isOn => this.setState(s => ({...this.state, five:isOn}))}
-/>
-
-</View>
-
-<FlatList style={{margin:16, alignSelf: 'flex-start'}}
-          data={[
-            {key: 'Aref', debt: 20},
-            {key: 'Sergiu', debt: -10},
-          ]}
-          renderItem={
-            ({item}) => 
-        <View style={{flex: 1, flexDirection: 'column'}}>
-          <Text style={{fontSize:24}}>{item.key}</Text> 
-          <Text style={{fontSize:20}}>{item.debt}</Text> 
-        </View>
-        }
-        />
+        <Text>
+          You have been scammed.
+        </Text>
+        <Text>
+          10$ have been held in your account until next week
+        </Text>
 
 
       </View>
 
-      
+
     )
   }
 }
 
 
 const mapStateToProps = (state) => ({
-  
+  remote: state.example.remote
 })
 
 const mapDispatchToProps = (dispatch) => ({

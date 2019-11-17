@@ -28,11 +28,11 @@ class LoginScreen extends React.Component {
 
         <View style={{margin: 16, width: '100%', flexDirection: 'row', justifyContent: 'space-around'}}>
 
-            <Button style={{margin:16,  width: '50%'}} onPress={() => NavigationService.navigateAndReset('ChildMainScreen')} title="Child" />  
-            <Button style={{margin:16,  width: '50%'}} onPress={() => NavigationService.navigateAndReset('ChildScammedScreen')} title="Parent" />
+            <Button style={{margin:16,  width: '50%'}} onPress={() => NavigationService.navigate('ChildMainScreen')} title="Child" />
+            <Button style={{margin:16,  width: '50%'}} onPress={() => NavigationService.navigate('ParentTeachingSettingsScreen')} title="Parent" />
 
             </View>
-        
+
 
       </View>
     )
@@ -41,7 +41,7 @@ class LoginScreen extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-  
+
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 36,
     fontWeight: 'bold',
-    margin: 16, 
+    margin: 16,
   },
 });
 
